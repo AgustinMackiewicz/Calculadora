@@ -46,7 +46,7 @@ while True:
                 resultado_b = factorializacion(valor_b)
                 print(f"el factorial de {valor_a} es {resultado_a} y el resultado del factorial de {valor_b} es {resultado_b}")
             else:
-                print ("ingrese los valores de A y B primero")
+                print ("ingrese un valor valido a, A y B primero")
         case "8":
             break
         case _:
