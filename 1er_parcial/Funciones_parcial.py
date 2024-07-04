@@ -66,7 +66,7 @@ def ganador(participantes:list):
     """ Printea el nombre y el tiempo de la persona que tiene el menor tiempo.
 
     Args:
-        lista_participantes (list): es la lista de heroes
+        lista_participantes (list): es la lista de participantes
     """
     if type(participantes) is not list:
         raise TypeError("La lista no es de tipo list")
@@ -90,6 +90,7 @@ def ganador(participantes:list):
         for participante in ganador:
             print(participante["nombre_del_dueño"])
             print(participante["tiempo"])
+
 def participante_por_bicicleta(lista_participantes:list):
     #No Funciona
     """Printea todos los participantes por bicicleta que tienen
@@ -151,13 +152,25 @@ def swap_lista(participantes: list, i: int, j: int):
     participantes[j] = aux
     
 def bici_ordenada_tipo (participantes:list):
-     for i in range(0, len(participantes)-1):
+    """ordena las bicicletas por tipo
+
+    Args:
+        participantes (list): lista de participantes
+    """
+    for i in range(0, len(participantes)-1):
         for j in range(i +1, len(participantes)):
                 if float(participantes[i]["tiempo"]) > float(participantes[j]["tiempo"]):
                     swap_lista(participantes, i, j)
 
 
 def ordenar_bicicletas_ascendente (lista_participantes:list):
+    """ordena las bicicletas por tipo de manera ascendente
+
+    Args:
+        participantes (list): lista de participantes
+    """
+    if type(lista_participantes) is not list:
+        raise TypeError("La lista no es de tipo list")
     dik = {}
     for participante in lista_participantes:
         bicicleta = participante["tipo"]
