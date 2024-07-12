@@ -13,6 +13,7 @@ class Bala(pygame.sprite.Sprite):
         for i in range(12):
             image = pygame.image.load(f"{self.imagenes}/{i}.png")
             self.imagenes_lista.append(image)
+        self.image = self.imagenes_lista[0]
 
     def dibujar_bala(self, superficie):
         superficie.blit(self.image, self.pos)

@@ -1,4 +1,5 @@
 import pygame
+from Class_enemies import Enemigo
 
 class EventHandler:
     def __init__(self, dick_vars:dict, lista_eventos:list[pygame.event.Event]) -> None:
@@ -10,20 +11,22 @@ class EventHandler:
                     EventHandler.event_mouse_button_down(self, dick_vars, event)
                 case pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        dick_vars["jugador"].aumentar_powerup(dick_vars)
+                        dick_vars["running"] = False
         EventHandler.event_case_key_pressed(self, dick_vars)
                 
                 
     def event_mouse_button_down(self, dick_vars:dict, evento:pygame.event.Event) -> None:
         if evento.button == 1:
-                if dick_vars["boton_jugar"].collidepoint(evento.pos):
+                if dick_vars["boton_jugar"].collidepoint(evento.pos) and dick_vars["game_state"] == 0 or dick_vars["game_state"] == 2:
                         dick_vars["game_state"] = 1
                         dick_vars["intro"].stop()
                         dick_vars["gameplay"].play(-1)
                         dick_vars["game_over"].stop()
                         dick_vars["vida"] = 3
                         dick_vars["jugador"].vida = 3
-                if dick_vars["boton_mutear"].collidepoint(evento.pos):
+                        dick_vars["power_ups"] = 0
+                        dick_vars["lista_power_ups"] = []
+                if dick_vars["boton_mutear"].collidepoint(evento.pos) and dick_vars["game_state"] == 0:
                     dick_vars["mute"] = not dick_vars["mute"]
                     if not dick_vars["mute"]:
                         dick_vars["intro"].set_volume(0.08)
@@ -48,6 +51,8 @@ class EventHandler:
             dick_vars["jugador"].mover("derecha")
         if keys[pygame.K_SPACE]:
             dick_vars["jugador"].shootear_bala(dick_vars)
+    
+    
         
 
     

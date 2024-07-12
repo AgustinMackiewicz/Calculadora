@@ -1,5 +1,5 @@
 import pygame
-
+from Class_enemies import Enemigo
 
 class Graficos:
     
@@ -62,3 +62,16 @@ class Graficos:
         dick_vars["lista_balas_rect"] = []
         for bala in dick_vars["lista_balas"]:
             dick_vars["lista_balas_rect"].append(bala.image.get_rect(topleft=[bala.pos[0], int(bala.pos[1])]))
+        dick_vars["lista_powerups_rect"] =[]
+        for powerup in dick_vars["lista_powerups"]:
+            powerup.rect = powerup.image.get_rect(topleft=powerup.pos)
+            dick_vars["lista_powerups_rect"].append(powerup.image.get_rect(topleft=powerup.pos))
+
+    def dibujar_lista_powerups(lista_powerups:list, pantalla:pygame.Surface, dick_vars:dict):
+        for powerup in lista_powerups:
+            powerup.dibujar_powerup(pantalla)
+            powerup.mover_powerup(dick_vars)
+    
+    def chequear_cantidad_enemigos(dick_vars:dict):
+        if len(dick_vars["lista_enemigos"]) == 0:
+            Enemigo.generar_wave(dick_vars)
