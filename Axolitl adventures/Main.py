@@ -11,15 +11,6 @@ pygame.init()
 pygame.mixer.init()
 clock = pygame.time.Clock()
 
-
-
-#To do: Add a waves
-#To do: Add a score
-#To do: Add a high score
-#To do: Use powerups
-#To do: Use Files
-
-
 pygame.display.set_caption("Axolitl adventures")
 pantalla = pygame.display.set_mode((800, 600))
 dick_config = Archivo.cargar_un_json(Archivo.get_path_actual("config.json"))
@@ -36,13 +27,13 @@ dick_vars = {
     "game_state" : 0,
 
     "mute" : False,
-    "intro" : pygame.mixer.Sound("Axolitl Adventures/Assets/Music/Intro.mp3"),
-    "game_over" : pygame.mixer.Sound("Axolitl Adventures/Assets/Music/Game Over.mp3"),
-    "disparo" : pygame.mixer.Sound("Axolitl Adventures/Assets/Music/Disparo.mp3"),
-    "gameplay" : pygame.mixer.Sound("Axolitl Adventures/Assets/Music/Game Music.mp3"),
+    "intro" : pygame.mixer.Sound("Assets/Music/Intro.mp3"),
+    "game_over" : pygame.mixer.Sound("Assets/Music/Game Over.mp3"),
+    "disparo" : pygame.mixer.Sound("Assets/Music/Disparo.mp3"),
+    "gameplay" : pygame.mixer.Sound("Assets/Music/Game/Music.mp3"),
     "logo_img" : dick_config["logo_img"],
     "mute_img" : dick_config["mute_img"],
-    "fuente" : pygame.font.Font("Axolitl Adventures/Assets/Graficos/Sans.ttf", 30),
+    "fuente" : pygame.font.Font("Assets/Graficos/Sans.ttf", 30),
     "bala_img" : dick_config["bala_img"],
     "score" : 0,
     "jugador_img": dick_config["jugador_img"],
@@ -53,6 +44,9 @@ dick_vars = {
     "high_score" : 0,
     "high_waves" : 0,
     "bala_enemigo_img" : dick_config["bala_enemigo_img"],
+    "corazon_amado_img" : dick_config["corazon_amado_img"],
+    "corazon_vacio_img" : dick_config["corazon_vacio_img"],
+    
     "waves" : 0,
     "lista_enemigos" : [],
     "lista_balas_enemigo" : [],
@@ -72,7 +66,7 @@ dick_vars["game_over"].set_volume(0.05)
 dick_vars["intro"].play(-1)
 while dick_vars["running"]:
     EventHandler(dick_vars, pygame.event.get())
-    pantalla.blit(pygame.image.load("Axolitl Adventures/Assets/Graficos/Fondo.png"), (0, 0))
+    pantalla.blit(pygame.image.load(dick_config["fondo_img"]), (0, 0))
     if dick_vars["game_state"] == 0:
         dick_vars["boton_jugar"] = pygame.draw.rect(pantalla, (0, 255, 255), (300, 300, 200, 70))
         Graficos.render_fuente( "Jugar", dick_vars["fuente"], (0, 0, 0), pantalla, (356, 315))
